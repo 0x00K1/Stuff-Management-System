@@ -833,7 +833,7 @@ void Change_CAPACITY(int size, int *capacity){
 	*capacity = getIntInput("New capacity: ", 0, 1000000);
 	clearScreen();
 	if(*capacity < size){
-		cout << "[x]Cannot change capacity to a value less than or equal the number of employees" << endl
+		cout << "[x]Cannot change capacity to a value less than the number of employees" << endl
 			 << setfill('-') << setw(50) << "" << endl;
 		*capacity = Whew;
 		back();
