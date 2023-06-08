@@ -91,7 +91,7 @@ Root Area      |
 ---------------+
 */
 int main() {
-    /*makes an inFile database object to read from DB_NAME, creates a size and Bu variables of type int and string respectively as well as a Staff array created from a structure*/
+    /*makes an inFile database object to read from DB_NAME, creates a size and put the variables of type int and string respectively as well as a Staff array created from a structure*/
     ifstream inFile;
     int size, capacity;
     string LINE;
@@ -227,6 +227,7 @@ void displayMenu() {
     cout << "- - - - - - - - - - - - - - - - - - - - - - - -+" << endl;
 }
 
+/*a function that read and write the basic files in program*/
 int getFileInfo(string DB_NAME, string type) {
     int size = -2, capacity = 100/*Default Maximum Size*/;
     string LINE;
@@ -270,7 +271,7 @@ int getFileInfo(string DB_NAME, string type) {
 	}
 }
 
-
+/*a function that update the struction of program*/
 void Struct_Update(vector<Staff> &staff, int size, int capacity){
 	ifstream inFile;
 	string LINE;
@@ -483,7 +484,7 @@ void searchEmployee(vector<Staff> &staff, int size, int capacity) {
     back();
 }
 
-/*a function that updates a staff's info within the staff array by using their name */
+/*a function that updates a staff's info within the staff array by using their id */
 void updateEmployee(vector<Staff> &staff, int size, int capacity) {
 
     if (DBCheck(size, false, capacity)) {
@@ -522,7 +523,7 @@ void updateEmployee(vector<Staff> &staff, int size, int capacity) {
     return;
 }
 
-/*a function that deletes an employee's info from the staff array using their name*/
+/*a function that deletes an employee's info from the staff array using their id*/
 void deleteEmployee(vector<Staff> &staff, int& size, int capacity) {
 
     if (DBCheck(size, false, capacity)) {
@@ -687,7 +688,7 @@ time_t get_last_activity_time(const string& PROGRAM_NAME) {
     return file_stat.st_mtime;
 }
 
-/*a function that checks the REPORT File and changes any configurations for it. using several modes such as read(prints data), appened(adds to the end of the text), rewrite(edit or write the file again), clear(Delete the data)*/
+/*a function that checks the REPORT File and changes any configurations for it. using several modes such as read(prints data), appened(adds to the end of the text), overwrite(edit or write the file again), clear(Delete the data)*/
 /*it also has option to Delete Data in DB file, And another option to change the name of backup file with backup more than one file */
 void settings(int size, int *capacity) {
     ifstream CHECK_FILE(REPORT_NAME);
@@ -799,7 +800,7 @@ void Append_Mode(string text) {
     return;
 }
 
-/*a function that opens the REPORT file to rewrite it */
+/*a function that opens the REPORT file to overwrite it */
 void OverWrite_Mode(string text) {
     ofstream rewrite;
     rewrite.open(REPORT_NAME, ios::out);
@@ -845,6 +846,7 @@ void Change_CAPACITY(int size, int *capacity){
 	return;
 }
 
+/*a function that check the status of program data*/
 void getSTATUS(int size, int capacity, time_t last_activity_time){
 	ifstream CHECK_REPORT_FILE(REPORT_NAME);
 	ifstream CHECK_BACKUP_FILE(BACKUP_NAME);
